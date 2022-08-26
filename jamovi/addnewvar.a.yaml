@@ -1,0 +1,48 @@
+---
+name:  addnewvar
+title: Add NewVar
+menuGroup: creavarj
+version: '0.0.1'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+      description:
+          R: the data as a data frame
+
+    - name: dep
+      title: Dependent Variable
+      type: Variable
+      required: true
+      suggested:
+        - continuous
+      permitted:
+        - numeric
+      description:
+          ui: >
+            the dependent variable. For example, these will be continuous.
+          R: >
+            the dependent variable from `data`, variable must be numeric
+
+    - name: factor
+      title: Factor
+      type: Variable
+      rejectUnusedLevels: true
+      suggested:
+        - nominal
+        - ordinal
+      permitted:
+        - factor
+      default:
+      description:
+          ui: >
+            the categorical explanatory (or independent) variables.
+          R: >
+            the explanatory factors in `data` (not necessary when providing a
+            formula, see examples)
+
+    - name: newvarOV
+      title: Save NewVar
+      type: Output
+...

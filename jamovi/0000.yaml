@@ -1,0 +1,21 @@
+---
+title: Add New Var
+name: creavarj
+version: 0.0.1
+jms: '1.0'
+authors:
+  - MAgojam
+maintainer: Maurizio Agosti <magosti@gmail.com>
+date: '1970-01-01'
+type: R
+description: Esempio per la creazione di variabili nel foglio data di jamovi.
+analyses:
+  - title: Add NewVar
+    name: addnewvar
+    ns: creavarj
+    menuGroup: creavarj
+    menuTitle: Add NewVar
+usesNative: true
+minApp: 1.0.8
+
+...

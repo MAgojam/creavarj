@@ -1,0 +1,23 @@
+Package: creavarj
+Type: Package
+Title: Add New Var
+Version: 0.0.1
+Author: MAgojam
+Maintainer: Maurizio Agosti <magosti@gmail.com>
+Description: Esempio per la creazione di variabili
+             nel foglio data di jamovi.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.0.0)
+Imports:
+    jmvcore (>= 2.3.4),
+    R6,
+    dplyr,
+    magrittr
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 7.1.1

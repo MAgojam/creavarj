@@ -1,0 +1,16 @@
+---
+name:  addnewvar
+title: Add NewVar
+jrs:   '1.1'
+
+items:
+    - name: newvarOV
+      title: Add NewVar
+      type: Output
+      varTitle: NewVar
+      varDescription: NewVar added with the creavarj module
+      measureType: continuous
+      clearWith:
+        - dep
+        - factor
+...
