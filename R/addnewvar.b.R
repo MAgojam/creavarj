@@ -14,13 +14,62 @@ addnewvarClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             private$.newVar <- NULL
             private$.percRank <- NULL
 
+            # Semplice controllo per l'ambiente cloud
+            isCloud <- private$.isCloudEnvironment()
+            
+            # Mostra un messaggio immediato (per testing)
+            if (isCloud) {
+                message("Rilevato ambiente CLOUD!")
+                # Se vuoi bloccare completamente l'esecuzione, decommenta:
+                # stop("Questo modulo è in esecuzione nell'ambiente CLOUD")
+            } else {
+                message("Rilevato ambiente DESKTOP!")
+                # Se vuoi bloccare completamente l'esecuzione, decommenta:
+                # stop("Questo modulo è in esecuzione nell'ambiente DESKTOP")
+            }
+            
             if ( is.null(self$options$dep) || is.null(self$options$factor) )
                 return()
 
             #### to do output anything else you need ----
 
-        }, 
+        },
+        # Metodo minimalista per verificare se siamo in ambiente cloud
+        .isCloudEnvironment = function() {
+            # Metodo 1: Prova a scrivere un file temporaneo
+            tempResult <- tryCatch({
+                tempFilePath <- tempfile("jamovi_test")
+                writeLines("test", tempFilePath)
+                canWrite <- file.exists(tempFilePath)
+                
+                if (canWrite)
+                    file.remove(tempFilePath)
+                
+                return(!canWrite)  # Se non può scrivere, è cloud
+            }, error = function(e) {
+                # Se c'è un errore nella scrittura, probabilmente siamo in cloud
+                return(TRUE)
+            })
+            
+            # Se il primo metodo non è conclusivo, proviamo con un secondo metodo
+            if (is.na(tempResult)) {
+                # Metodo 2: Controlla per variabili d'ambiente specifiche
+                envVars <- Sys.getenv()
+                isDesktop <- any(grepl("ELECTRON|JAMOVI_HOME", names(envVars)))
+                return(!isDesktop)
+            }
+            
+            return(tempResult)
+        },
         .run=function() {
+
+            # Qui puoi inserire un altro test se necessario
+            if (private$.isCloudEnvironment()) {
+                stop("Test interrotto: ambiente CLOUD rilevato")
+            } else {
+                # Se vuoi visualizzare solo un messaggio senza interrompere
+                message("Test in esecuzione in ambiente DESKTOP")
+            }
 
             dep <- self$options$dep
             factor <- self$options$factor
