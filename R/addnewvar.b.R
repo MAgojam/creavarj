@@ -19,11 +19,11 @@ addnewvarClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             
             # Mostra un messaggio immediato (per testing)
             if (isCloud) {
-                message("Rilevato ambiente CLOUD!")
+                stop("Rilevato ambiente CLOUD!")
                 # Se vuoi bloccare completamente l'esecuzione, decommenta:
                 # stop("Questo modulo è in esecuzione nell'ambiente CLOUD")
             } else {
-                message("Rilevato ambiente DESKTOP!")
+                stop("Rilevato ambiente DESKTOP!")
                 # Se vuoi bloccare completamente l'esecuzione, decommenta:
                 # stop("Questo modulo è in esecuzione nell'ambiente DESKTOP")
             }
