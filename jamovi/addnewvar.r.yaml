@@ -8,7 +8,7 @@ items:
     type:  Html
     clearWith: NULL
     content: >
-      <h2>Details</h2>
+      <h2>INFO - Details</h2>
       <p>There are four different types of merging operations: The option
       "Keeps All Cases (Rows)" keeps all cases (but if some input data sets did
       not contain that value of the matching variable, there might be missing
